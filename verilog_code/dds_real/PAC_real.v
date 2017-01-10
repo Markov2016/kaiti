@@ -5,9 +5,9 @@ input [15:0] data_wr;
 output [15:0] sin_amp;
 
 wire [15:0] sin_wave,temp;
-assign temp = (writed == 1)?sin_wave:16'b0;
+assign temp = (wen == 1)?sin_wave:16'b0;
 assign sin_amp = (~sign)?temp:(~temp + 16'h0001);
 
-sram_sp_hdc_svt_rvt_hvt s1(.Q(sin_wave), .CLK(sys_clk), .CEN(cen), .WEN(wen), .A(index), .D(data_wr), .EMA(0), .RETN(1));
+sram_sp_hdc_svt_rvt_hvt s1(.Q(sin_wave), .CLK(sys_clk), .CEN(cen), .WEN(wen), .A(index), .D(data_wr), .EMA(3'b0), .RETN(1'b1));
 
 endmodule
